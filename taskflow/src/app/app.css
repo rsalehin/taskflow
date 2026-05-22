@@ -31,3 +31,10 @@ body {
   color: #718096;
   font-size: 1.1rem;
 }
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}

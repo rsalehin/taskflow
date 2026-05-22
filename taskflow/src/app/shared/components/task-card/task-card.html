@@ -1,32 +1,49 @@
-<div class="task-card">
+<div class="task-card" [class.completed]="task.status === 'done'">
 
-  <!-- String-Interpolation -->
   <div class="task-header">
-    <h3 class="task-title">{{ title }}</h3>
-    <span class="priority-badge">{{ priority }}</span>
+    <h3 class="task-title">{{ task.title }}</h3>
+    <span class="priority-badge priority-{{ task.priority }}">
+      {{ task.priority }}
+    </span>
   </div>
 
-  <!-- Objekt-Eigenschaft -->
-  <p class="task-description">{{ description }}</p>
+  <p class="task-description">{{ task.description }}</p>
 
-  <!-- Ausdruck in {{ }} -->
   <div class="task-meta">
-    <span>Fällig: {{ dueDate }}</span>
-    <span>Status: {{ isCompleted ? 'Erledigt ✓' : 'Offen' }}</span>
+    <span>📅 {{ task.dueDate }}</span>
+    <span class="status-badge status-{{ task.status }}">
+      {{ task.status }}
+    </span>
   </div>
 
-  <!-- Rechnen in {{ }} -->
   <div class="task-progress">
-    <span>Fortschritt: {{ progress }}%</span>
+    <span>Fortschritt: {{ task.progress }}%</span>
     <div class="progress-bar">
-      <div class="progress-fill" style="width: {{ progress }}%"></div>
+      <div class="progress-fill" [style.width.%]="task.progress"></div>
     </div>
   </div>
 
-  <!-- Objekt-Eigenschaft -->
   <div class="task-footer">
-    <div class="assignee-avatar">{{ assignee.initials }}</div>
-    <span>{{ assignee.name }}</span>
+    <div class="assignee-avatar">{{ task.assignee.initials }}</div>
+    <span class="assignee-name">{{ task.assignee.name }}</span>
+
+    <div class="task-actions">
+      <!-- toggleStatus Event nach oben schicken -->
+      <button
+        class="btn-toggle"
+        (click)="onToggleStatus()"
+        [title]="task.status === 'done' ? 'Als offen markieren' : 'Als erledigt markieren'">
+        {{ task.status === 'done' ? '↩ Öffnen' : '✓ Erledigt' }}
+      </button>
+
+      <!-- deleteTask Event nach oben schicken -->
+      <button
+        class="btn-delete"
+        (click)="onDelete()"
+        title="Task löschen">
+        🗑
+      </button>
+    </div>
   </div>
 
 </div>

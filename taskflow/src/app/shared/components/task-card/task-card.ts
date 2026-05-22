@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Task } from '../../../core/models/task.model';
 
 @Component({
   selector: 'app-task-card',
@@ -8,18 +9,22 @@ import { Component } from '@angular/core';
 })
 export class TaskCardComponent {
 
-  // Einfache Werte
-  title = 'Angular Interpolation lernen';
-  description = 'Verstehen wie {{ }} funktioniert';
-  priority = 'Hoch';
-  dueDate = '2025-06-01';
-  isCompleted = false;
-  progress = 75;
+  @Input() task!: Task;
 
-  // Objekt
-  assignee = {
-    name: 'Max Mustermann',
-    initials: 'MM'
-  };
+  @Output() deleteTask = new EventEmitter<number>();
+  @Output() toggleStatus = new EventEmitter<Task>();
+
+  onDelete() {
+    this.deleteTask.emit(this.task.id);
+    //                    ↑
+    // schickt die Task-ID nach oben
+  }
+
+  onToggleStatus() {
+    const newStatus = this.task.status === 'done' ? 'open' : 'done';
+    this.toggleStatus.emit({ ...this.task, status: newStatus });
+    //                       ↑
+    // schickt den ganzen Task mit neuem Status nach oben
+  }
 
 }

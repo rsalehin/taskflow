@@ -6,6 +6,10 @@ export interface Task {
   description: string;
   status: 'open' | 'in-progress' | 'done';
   priority: 'low' | 'medium' | 'high';
+  progress: number;
   dueDate: string;
-  category: string;
+  assignee: {
+    name: string;
+    initials: string;
+  };
 }

@@ -1,14 +1,26 @@
 <div class="app-container">
-  <app-navbar />
 
-  <main class="main-content">
-    <h1>Willkommen bei TaskFlow</h1>
-    <p>Dein persönlicher Task-Manager</p>
-
-    <div style="margin-top: 2rem; max-width: 400px;">
-      <app-task-card />
+  <header class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-icon">✓</span>
+      <span class="brand-name">TaskFlow</span>
     </div>
-  </main>
+    <nav class="navbar-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Tasks</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+<div class="task-grid">
+  <app-task-card
+    *ngFor="let task of tasks"
+    [task]="task"
+    (deleteTask)="onDeleteTask($event)"
+    (toggleStatus)="onToggleStatus($event)"
+  />
+</div>
+
 </div>
 
 <router-outlet />
