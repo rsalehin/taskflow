@@ -1,0 +1,32 @@
+<div class="task-card">
+
+  <!-- String-Interpolation -->
+  <div class="task-header">
+    <h3 class="task-title">{{ title }}</h3>
+    <span class="priority-badge">{{ priority }}</span>
+  </div>
+
+  <!-- Objekt-Eigenschaft -->
+  <p class="task-description">{{ description }}</p>
+
+  <!-- Ausdruck in {{ }} -->
+  <div class="task-meta">
+    <span>Fällig: {{ dueDate }}</span>
+    <span>Status: {{ isCompleted ? 'Erledigt ✓' : 'Offen' }}</span>
+  </div>
+
+  <!-- Rechnen in {{ }} -->
+  <div class="task-progress">
+    <span>Fortschritt: {{ progress }}%</span>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: {{ progress }}%"></div>
+    </div>
+  </div>
+
+  <!-- Objekt-Eigenschaft -->
+  <div class="task-footer">
+    <div class="assignee-avatar">{{ assignee.initials }}</div>
+    <span>{{ assignee.name }}</span>
+  </div>
+
+</div>
